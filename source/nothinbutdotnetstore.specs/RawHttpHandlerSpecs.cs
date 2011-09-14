@@ -27,7 +27,7 @@ namespace nothinbutdotnetstore.specs
                 a_new_request_based_on_the_incoming_context = new object();
                 an_incoming_httpcontext = ObjectFactory.web.create_http_context();
 
-                request_factory.setup(x => x.create_request_from(an_incoming_httpcontext));
+                request_factory.setup(x => x.create_request_from(an_incoming_httpcontext)).Return(a_new_request_based_on_the_incoming_context);
             };
 
             Because b = () =>
