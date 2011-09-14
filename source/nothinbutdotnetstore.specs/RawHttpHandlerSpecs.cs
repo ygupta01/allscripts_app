@@ -24,7 +24,7 @@ namespace nothinbutdotnetstore.specs
                 front_controller = depends.on<IProcessRequests>();
                 request_factory = depends.on<ICreateRequests>();
 
-                a_new_request_based_on_the_incoming_context = new object();
+                a_new_request_based_on_the_incoming_context = fake.an<IContainRequestInformation>();
                 an_incoming_httpcontext = ObjectFactory.web.create_http_context();
 
                 request_factory.setup(x => x.create_request_from(an_incoming_httpcontext)).Return(a_new_request_based_on_the_incoming_context);
@@ -38,7 +38,7 @@ namespace nothinbutdotnetstore.specs
                 front_controller.received(x => x.process(a_new_request_based_on_the_incoming_context));
 
             static IProcessRequests front_controller;
-            static object a_new_request_based_on_the_incoming_context;
+            static IContainRequestInformation a_new_request_based_on_the_incoming_context;
             static HttpContext an_incoming_httpcontext;
             static ICreateRequests request_factory;
         }
