@@ -1,19 +1,22 @@
 ﻿using System;
 using System.Data;
 using System.Linq;
+using System.Security;
+using System.Threading;
 
 namespace nothinbutdotnetstore
 {
     public interface ICalculate
     {
         int add(int first, int second);
+        void enable_super_mode();
     }
 
     public class Calculator : ICalculate
     {
         IDbConnection connection;
 
-        public Calculator(IDbConnection connection)
+        public Calculator(IDbConnection connection,int number)
         {
             this.connection = connection;
         }
@@ -22,11 +25,21 @@ namespace nothinbutdotnetstore
         {
             ensure_all_are_positive(first, second);
 
-            connection.Open();
-            IDbCommand command = connection.CreateCommand();
-            command.ExecuteNonQuery();
+            using (connection)
+            using (var command = connection.CreateCommand())
+            {
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
 
             return first + second;
+        }
+
+        public void enable_super_mode()
+        {
+            if (Thread.CurrentPrincipal.IsInRole("sfsdf")) return;
+
+            throw new SecurityException();
         }
 
         void ensure_all_are_positive(params int[] numbers)
@@ -35,6 +48,5 @@ namespace nothinbutdotnetstore
 
             throw new ArgumentException();
         }
-
     }
 }
