@@ -125,7 +125,7 @@
   </Target>
   -->
   <PropertyGroup>
-    <PostBuildEvent>cd $(SolutionDir)
-build copy_config_files</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
 </Project>
