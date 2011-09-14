@@ -22,7 +22,7 @@ namespace nothinbutdotnetstore
         {
             ensure_all_are_positive(first, second);
 
-          connection.Open();
+            connection.Open();
 
             return first + second;
         }
@@ -33,12 +33,6 @@ namespace nothinbutdotnetstore
 
             throw new ArgumentException();
         }
-      void ensure_connection_is_configured(IDbConnection testConnection)
-      {
-        if (testConnection == null)
-          throw new ApplicationException("Connection was not defined");
-        if (string.IsNullOrEmpty(testConnection.ConnectionString)) ;
-        throw new ApplicationException("Connection is not configured");
-      }
+
     }
 }
