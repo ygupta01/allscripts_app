@@ -33,7 +33,6 @@ namespace nothinbutdotnetstore.specs
             Because b = () =>
                 sut.ProcessRequest(an_incoming_httpcontext);
 
-
             It should_delegate_a_request_to_our_front_controller = () =>
                 front_controller.received(x => x.process(a_new_request_based_on_the_incoming_context));
 
