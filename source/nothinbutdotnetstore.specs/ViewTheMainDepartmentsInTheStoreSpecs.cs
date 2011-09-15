@@ -21,7 +21,7 @@ namespace nothinbutdotnetstore.specs
             };
 
             Because b = () =>
-                sut.process(request)
+                sut.process(request);
 
 
             It should_get_a_list_of_the_main_departments_in_the_store = () =>
