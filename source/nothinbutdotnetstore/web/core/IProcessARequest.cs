@@ -1,8 +1,7 @@
 ﻿namespace nothinbutdotnetstore.web.core
 {
-    public interface IProcessARequest
+    public interface IProcessARequest : IPerformApplicationBehaviour
     {
-        void process(IContainRequestInformation the_request);
         bool can_handle(IContainRequestInformation request);
     }
 }
