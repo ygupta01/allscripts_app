@@ -16,15 +16,8 @@ namespace nothinbutdotnetstore.web.core
 
         public IProcessARequest get_the_command_that_can_process(IContainRequestInformation the_request)
         {
-            foreach(IProcessARequest r in all_commands)
-            {
-                if (r.can_handle((the_request)))
-                {
-                    return r;
-                }
-            }
-
-            return the_special_case;
+            return all_commands.FirstOrDefault(x => x.can_handle(the_request))
+                ?? the_special_case;
         }
     }
 }
